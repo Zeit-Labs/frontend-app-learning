@@ -62,6 +62,7 @@ const CertificateStatus = ({ intl }) => {
   let certStatus;
   let certWebViewUrl;
   const timezoneFormatArgs = userTimezone ? { timeZone: userTimezone } : {};
+  const timezoneFormatArgs = userTimezone ? { timeZone: userTimezone } : {};
 
   if (certificateData) {
     certStatus = certificateData.certStatus;
