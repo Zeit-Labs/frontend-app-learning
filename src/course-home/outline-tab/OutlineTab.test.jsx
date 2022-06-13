@@ -793,14 +793,12 @@ describe('Outline Tab', () => {
         const requestingButton = screen.getByRole('button', { name: 'Request certificate' });
         fireEvent.click(requestingButton);
         expect(sendTrackEvent).toHaveBeenCalledTimes(1);
-        expect(sendTrackEvent).toHaveBeenCalledWith(
-          'edx.ui.lms.course_outline.certificate_alert_request_cert_button.clicked',
+        expect(sendTrackEvent).toHaveBeenCalledWith('edx.ui.lms.course_outline.certificate_alert_request_cert_button.clicked',
           {
             courserun_key: courseId,
             is_staff: false,
             org_key: 'edX',
-          },
-        );
+          });
       });
 
       it('tracks unverified cert button', async () => {
