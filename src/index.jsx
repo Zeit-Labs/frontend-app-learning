@@ -123,6 +123,7 @@ initialize({
         ENTERPRISE_LEARNER_PORTAL_HOSTNAME: process.env.ENTERPRISE_LEARNER_PORTAL_HOSTNAME || null,
         ENABLE_JUMPNAV: process.env.ENABLE_JUMPNAV || null,
         ENABLE_NOTICES: process.env.ENABLE_NOTICES || null,
+        EXAMS_BASE_URL: process.env.EXAMS_BASE_URL || null,
         INSIGHTS_BASE_URL: process.env.INSIGHTS_BASE_URL || null,
         SEARCH_CATALOG_URL: process.env.SEARCH_CATALOG_URL || null,
         SOCIAL_UTM_MILESTONE_CAMPAIGN: process.env.SOCIAL_UTM_MILESTONE_CAMPAIGN || null,
