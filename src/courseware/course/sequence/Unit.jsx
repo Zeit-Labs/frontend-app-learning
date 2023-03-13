@@ -1,6 +1,7 @@
 import { getConfig } from '@edx/frontend-platform';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { AppContext, ErrorPage } from '@edx/frontend-platform/react';
+import { checkExamAccessToken, store } from '@edx/frontend-lib-special-exams';
 import { Modal } from '@edx/paragon';
 import PropTypes from 'prop-types';
 import React, {
@@ -15,6 +16,7 @@ import { fetchCourse } from '../../data';
 import BookmarkButton from '../bookmark/BookmarkButton';
 import ShareButton from '../share/ShareButton';
 import messages from './messages';
+
 
 const HonorCode = React.lazy(() => import('./honor-code'));
 const LockPaywall = React.lazy(() => import('./lock-paywall'));
@@ -83,11 +85,24 @@ const Unit = ({
 }) => {
   const { authenticatedUser } = useContext(AppContext);
   const view = authenticatedUser ? 'student_view' : 'public_view';
+
+  // todo: check for if exam before doing this step?
+  const { exam } = store.getState().examState;
+
+  // todo: refactore and test logic here
+  const examAccess = null;
+  if (exam.id) {
+    checkExamAccessToken();
+    const examAccess = exam.examAccessToken;
+  }
+
   let iframeUrl = `${getConfig().LMS_BASE_URL}/xblock/${id}?show_title=0&show_bookmark_button=0&recheck_access=1&view=${view}`;
   if (format) {
     iframeUrl += `&format=${format}`;
   }
-
+  if (examAccess) {
+    iframeUrl += `&exam_access=${examAccess}`;
+  }
   const [iframeHeight, setIframeHeight] = useState(0);
   const [hasLoaded, setHasLoaded] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -237,6 +252,7 @@ const Unit = ({
           />
         </div>
       )}
+    {/* todo: add case for error for no exam access token !shoulddisplayhonorcode && !examAccessToken && !showError?*/}
     </div>
   );
 };
