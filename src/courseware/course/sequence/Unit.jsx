@@ -1,7 +1,7 @@
 import { getConfig } from '@edx/frontend-platform';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { AppContext, ErrorPage } from '@edx/frontend-platform/react';
-import { checkExamAccessToken, store } from '@edx/frontend-lib-special-exams';
+import { checkExamAccessToken } from '@edx/frontend-lib-special-exams';
 import { Modal } from '@edx/paragon';
 import PropTypes from 'prop-types';
 import React, {
@@ -85,17 +85,17 @@ const Unit = ({
   const { authenticatedUser } = useContext(AppContext);
   const view = authenticatedUser ? 'student_view' : 'public_view';
 
-  const { exam, examAccessToken } = store.getState().examState;
-  if (exam.id) {
-    checkExamAccessToken();
-  }
+  const examAccessToken = checkExamAccessToken();
+  console.log("exam access token: ", examAccessToken);
 
   let iframeUrl = `${getConfig().LMS_BASE_URL}/xblock/${id}?show_title=0&show_bookmark_button=0&recheck_access=1&view=${view}`;
   if (format) {
     iframeUrl += `&format=${format}`;
   }
   if (examAccessToken) {
+    console.log("has exam access token");
     iframeUrl += `&exam_access=${examAccessToken}`;
+    console.log("iframe url: ", iframeUrl);
   }
   const [iframeHeight, setIframeHeight] = useState(0);
   const [hasLoaded, setHasLoaded] = useState(false);
