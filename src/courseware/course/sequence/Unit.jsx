@@ -86,16 +86,16 @@ const Unit = ({
   const view = authenticatedUser ? 'student_view' : 'public_view';
 
   const examAccessToken = checkExamAccessToken();
-  console.log("exam access token: ", examAccessToken);
+  console.log('exam access token: ', examAccessToken);
 
   let iframeUrl = `${getConfig().LMS_BASE_URL}/xblock/${id}?show_title=0&show_bookmark_button=0&recheck_access=1&view=${view}`;
   if (format) {
     iframeUrl += `&format=${format}`;
   }
   if (examAccessToken) {
-    console.log("has exam access token");
+    console.log('has exam access token');
     iframeUrl += `&exam_access=${examAccessToken}`;
-    console.log("iframe url: ", iframeUrl);
+    console.log('iframe url: ', iframeUrl);
   }
   const [iframeHeight, setIframeHeight] = useState(0);
   const [hasLoaded, setHasLoaded] = useState(false);
