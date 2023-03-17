@@ -103,6 +103,7 @@ describe('Course', () => {
   });
 
   it('displays notification trigger and toggles active class on click', async () => {
+    localStorage.setItem('showDiscussionSidebar', false);
     render(<Course {...mockData} />);
 
     const notificationTrigger = screen.getByRole('button', { name: /Show notification tray/i });
@@ -114,6 +115,7 @@ describe('Course', () => {
 
   it('handles click to open/close notification tray', async () => {
     sessionStorage.clear();
+    localStorage.setItem('showDiscussionSidebar', false);
     render(<Course {...mockData} />);
     expect(sessionStorage.getItem(`notificationTrayStatus.${mockData.courseId}`)).toBe('"open"');
     const notificationShowButton = await screen.findByRole('button', { name: /Show notification tray/i });
