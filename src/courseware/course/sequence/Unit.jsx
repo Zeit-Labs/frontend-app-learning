@@ -1,7 +1,7 @@
 import { getConfig } from '@edx/frontend-platform';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { AppContext, ErrorPage } from '@edx/frontend-platform/react';
-import { fetchExamAccess, isExam } from '@edx/frontend-lib-special-exams';
+import { getExamAccess, fetchExamAccess, isExam } from '@edx/frontend-lib-special-exams';
 import { Modal } from '@edx/paragon';
 import PropTypes from 'prop-types';
 import React, {
@@ -156,8 +156,8 @@ const Unit = ({
 
   useEffect(() => {
     if (isExam()) {
-      fetchExamAccess().then((token) => {
-        setExamAccessToken(token);
+      fetchExamAccess().then(() => {
+        setExamAccessToken(getExamAccess());
         setBlockExamAccess(false);
       });
     }
