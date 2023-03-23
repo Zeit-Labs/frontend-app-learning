@@ -1,5 +1,6 @@
 import React from 'react';
 import { Factory } from 'rosie';
+import { fetchExamAccess, isExam } from '@edx/frontend-lib-special-exams';
 import {
   initializeTestStore, loadUnit, messageEvent, render, screen, waitFor,
 } from '../../../setupTest';
@@ -175,7 +176,27 @@ describe('Unit', () => {
     expect(mockHashCheck).toHaveBeenCalled();
   });
 
-//  todo: add test to see that fetch access token runs when expected, not run if not exam
-//  todo: add test to see that iframe url/src is updated, not updated
-//  todo: add test to see that doesn't load iframe if block exam access
+  it('calls fetchExamAccess if isExam upon block id', () => {
+    const mockIsExam = jest.fn(() => isExam());
+    mockIsExam.mockReturnValue(true);
+
+    const mockFetchExamAccess = jest.fn(() => fetchExamAccess());
+
+    const effectSpy = jest.spyOn(React, 'useEffect');
+    effectSpy.mockImplementation(() => mockIsExam());
+
+    render(<Unit {...mockData} />);
+    expect(React.useEffect).toHaveBeenCalled();
+    expect(mockIsExam).toHaveBeenCalled();
+    expect(mockFetchExamAccess).toHaveBeenCalled();
+  });
+
+  it('does not call fetchExamAccess if not isExam upon block id', () => {
+  //   doesn't call fetch
+  //   doesn't update src url
+  });
+
+  it('does not load iframe if blockExamAccess', () => {
+  //   doesn't load iframe
+  });
 });
