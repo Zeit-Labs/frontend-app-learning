@@ -1,6 +1,7 @@
 import React from 'react';
 import { Factory } from 'rosie';
 import { fetchExamAccess, isExam } from '@edx/frontend-lib-special-exams';
+import { mergeConfig } from '@edx/frontend-platform';
 import {
   initializeTestStore, loadUnit, messageEvent, render, screen, waitFor,
 } from '../../../setupTest';
@@ -46,6 +47,9 @@ describe('Unit', () => {
       courseId: courseMetadata.id,
       format: 'Homework',
     };
+    mergeConfig({
+      EXAMS_BASE_URL: process.env.EXAMS_BASE_URL || null,
+    });
   });
 
   it('renders correctly', () => {
