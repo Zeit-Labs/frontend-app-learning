@@ -46,6 +46,14 @@ push_translations:
 pull_translations:
 	tx pull -f --mode reviewed --languages=$(transifex_langs)
 
+# Experimental: OEP-58 Pulls translations using atlas
+experimental_atlas_pull_translations:
+	rm -rf src/i18n/messages
+	mkdir src/i18n/messages
+	cd src/i18n/messages && rm -rf frontend-app-learning && mkdir frontend-app-learning && cd frontend-app-learning && atlas pull --directory=translations/frontend-app-learning
+	cd src/i18n/messages && rm -rf frontend-component-footer && mkdir frontend-component-footer && cd frontend-component-footer && atlas pull --directory=translations/frontend-component-footer
+	cd src/i18n/messages && rm -rf frontend-component-footer && mkdir frontend-component-footer && cd frontend-component-footer && atlas pull --directory=translations/frontend-component-footer
+
 # This target is used by Travis.
 validate-no-uncommitted-package-lock-changes:
 	# Checking for package-lock.json changes...
