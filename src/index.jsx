@@ -140,8 +140,7 @@ initialize({
     },
   },
   messages: [
-    appMessages,
-    footerMessages,
-    headerMessages,
+    './i18n/',
+    './i18n/footer',
   ],
 });
