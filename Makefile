@@ -49,10 +49,10 @@ pull_translations:
 # Experimental: OEP-58 Pulls translations using atlas
 experimental_atlas_pull_translations:
 	rm -rf src/i18n/messages
-	mkdir src/i18n/messages
-	cd src/i18n/messages && rm -rf frontend-app-learning && mkdir frontend-app-learning && cd frontend-app-learning && atlas pull --directory=translations/frontend-app-learning
-	cd src/i18n/messages && rm -rf frontend-component-footer && mkdir frontend-component-footer && cd frontend-component-footer && atlas pull --directory=translations/frontend-component-footer
-	cd src/i18n/messages && rm -rf frontend-component-footer && mkdir frontend-component-footer && cd frontend-component-footer && atlas pull --directory=translations/frontend-component-footer
+	mkdir src/i18n/atlas-messages/
+	cd src/i18n/atlas-messages && mkdir frontend-app-learning && cd frontend-app-learning && atlas pull --directory=translations/frontend-app-learning
+	cd src/i18n/atlas-messages && mkdir frontend-component-footer && cd frontend-component-footer && atlas pull --directory=translations/frontend-component-footer
+	cd src/i18n/atlas-messages && mkdir frontend-component-header && cd frontend-component-header && atlas pull --directory=translations/frontend-component-header
 
 # This target is used by Travis.
 validate-no-uncommitted-package-lock-changes:
