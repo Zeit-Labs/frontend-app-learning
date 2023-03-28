@@ -10,12 +10,12 @@ import messages4ru from './ru.json';
 import messages5uk from './uk.json';
 import messages6zh_CN from './zh_CN.json';
 const messages = {
+  'ar': messages0ar,
   'zh-cn': messages6zh_CN,
   'uk': messages5uk,
   'ru': messages4ru,
   'fr-ca': messages3fr_CA,
   'es-419': messages2es_419,
   'de': messages1de,
-  'ar': messages0ar,
 };
 export default messages;

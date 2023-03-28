@@ -55,7 +55,7 @@ experimental_atlas_pull_translations:
 	cd src/i18n/messages && mkdir frontend-component-footer && cd frontend-component-footer && atlas pull --repository=openedx/frontend-component-footer --branch=master --directory=src/i18n/messages
 
 	cd src/i18n/messages && mkdir frontend-component-header && cd frontend-component-header && atlas pull --directory=translations/frontend-component-header/src/i18n/messages
-	generate-mfe-i18n-imports  frontend-app-learning frontend-component-footer frontend-component-header
+	generate-mfe-i18n-imports frontend-component-header frontend-component-footer frontend-app-learning
 
 # This target is used by Travis.
 validate-no-uncommitted-package-lock-changes:
