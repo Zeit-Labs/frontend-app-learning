@@ -49,10 +49,13 @@ pull_translations:
 # Experimental: OEP-58 Pulls translations using atlas
 experimental_atlas_pull_translations:
 	rm -rf src/i18n/messages
-	mkdir src/i18n/atlas-messages/
-	cd src/i18n/atlas-messages && mkdir frontend-app-learning && cd frontend-app-learning && atlas pull --directory=translations/frontend-app-learning
-	cd src/i18n/atlas-messages && mkdir frontend-component-footer && cd frontend-component-footer && atlas pull --directory=translations/frontend-component-footer
-	cd src/i18n/atlas-messages && mkdir frontend-component-header && cd frontend-component-header && atlas pull --directory=translations/frontend-component-header
+	mkdir src/i18n/messages
+	cd src/i18n/messages && mkdir frontend-app-learning && cd frontend-app-learning && atlas pull --repository=Zeit-Labs/openedx-translations --branch=learning-mfe-translations --directory=translations/frontend-app-learning/src/i18n/messages
+
+	cd src/i18n/messages && mkdir frontend-component-footer && cd frontend-component-footer && atlas pull --repository=openedx/frontend-component-footer --branch=master --directory=src/i18n/messages
+
+	cd src/i18n/messages && mkdir frontend-component-header && cd frontend-component-header && atlas pull --directory=translations/frontend-component-header/src/i18n/messages
+	generate-mfe-i18n-imports  frontend-app-learning frontend-component-footer frontend-component-header
 
 # This target is used by Travis.
 validate-no-uncommitted-package-lock-changes:
