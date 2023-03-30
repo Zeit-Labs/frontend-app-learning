@@ -16,8 +16,6 @@ import { fetchDiscussionTab, fetchLiveTab } from './course-home/data/thunks';
 import DiscussionTab from './course-home/discussion-tab/DiscussionTab';
 
 import messages from './i18n';
-
-
 import { UserMessagesProvider } from './generic/user-messages';
 
 import './index.scss';
@@ -37,7 +35,6 @@ import NoticesProvider from './generic/notices';
 import PathFixesProvider from './generic/path-fixes';
 import LiveTab from './course-home/live-tab/LiveTab';
 import CourseAccessErrorPage from './generic/CourseAccessErrorPage';
-
 
 subscribe(APP_READY, () => {
   ReactDOM.render(
