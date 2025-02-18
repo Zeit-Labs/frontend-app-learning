@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@edx/brand": "npm:@openedx/brand-openedx@^1.2.2",
+    "brand-openedx-zeit": "git+https://github.com/zeit-labs/brand-openedx.git",
     "@edx/frontend-component-header": "^5.0.2",
     "@edx/frontend-lib-learning-assistant": "^2.0.0",
     "@edx/frontend-lib-special-exams": "^3.0.1",
